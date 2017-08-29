@@ -1,7 +1,7 @@
 {
   "name": "lue",
   "version": "0.0.1",
-  "description": "Vue and vuex based framework, writing less verbose code.",
+  "description": "Vue and vuex based library, writing less verbose code.",
   "author": "pomysky@gmail.com",
   "main": "dist/lue.min.js",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "dev": "node ./build/dev-server.js",
     "prepush": "npm run ilint -q",
     "prepublishOnly": "npm run build",
-    "build": "npx webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
+    "build": "npx webpack --config ./build/webpack.build.config.js --progress --hide-modules",
     "ilint": "npx eslint src/**/*.js",
     "fix": "npx eslint --fix src/**/*.js"
   },
