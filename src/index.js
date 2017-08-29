@@ -1,3 +1,7 @@
-export default function () {
-    console.log('6666');
+import install from './install';
+
+const Lue = {
+    install
 };
+
+export default Lue;
