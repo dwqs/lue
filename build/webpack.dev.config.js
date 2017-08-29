@@ -29,12 +29,11 @@ const devServer = {
 };
 
 module.exports = {
-    context: path.resolve(__dirname, '../example'),
     entry: {
         app: [
             'webpack/hot/dev-server',
             `webpack-dev-server/client?http://localhost:8000/`,
-            path.resolve(__dirname, '../example/page/index.js')
+            path.resolve(__dirname, '../examples/page/index.js')
         ]
     },
     output: {
@@ -97,7 +96,7 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: '../example/index.html',
+            template: './examples/index.html',
             inject: true,
             minify: {
                 removeComments: true,
