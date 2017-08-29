@@ -2,3 +2,14 @@
 
 # lue
 :seedling: Vue and vuex based framework, writing less verbose code.
+
+## Examples
+Running the examples:
+
+```
+npm install
+npm run dev # serve examples at localhost:8000
+```
+
+## LICENSE
+MIT
