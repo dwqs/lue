@@ -11,7 +11,7 @@ module.exports = {
     output: {
         filename: '[name].min.js',
         path: path.resolve(__dirname, '../dist'),
-        library: 'lue',
+        library: 'Lue',
         libraryTarget: 'umd'
     },
     module: {
