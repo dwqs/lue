@@ -1,7 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Lue from 'lue';
 
 Vue.use(VueRouter);
+
+import modules from '../modules/index';
+
+const lue = new Lue();
+lue.createStore(modules);
 
 const App = () => import(/* webpackChunkName: "app" */ './app');
 const Counter = () => import(/* webpackChunkName: "counter" */ '../components/counter/index');
