@@ -76,7 +76,7 @@ export default class Lue {
         console.log('this.modulesthis.modulesthis', this.modules);
 
         const strict = opts.strict || true;
-        
+
         delete opts['actions'];
         delete opts['getters'];
 
@@ -84,6 +84,10 @@ export default class Lue {
             strict,
             modules: this.modules
         });
+
+        this.store = new Vuex.Store(opts);
+        console.log('this.storethis.storethis.storethis.store', this.store);
+        console.log('this.state.statestate', this.store.state);
     }
 
     /**
