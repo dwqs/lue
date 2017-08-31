@@ -5,13 +5,13 @@ export default {
         title: 'Counter'
     },
     actions: {
-        increase (state, payload) {
+        increase ({commit, state, dispatch}, payload) {
             let newCount = state.count + 1;
             return Object.assign({}, state, {
                 count: newCount
             });
         },
-        decrease (state, payload) {
+        decrease ({commit, state, dispatch}, payload) {
             let newCount = state.count - 1;
             return {
                 count: newCount
