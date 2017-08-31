@@ -1,10 +1,3 @@
-// import install from './install';
-
-// const Lue = {
-//     install
-// };
-
-// export default Lue;
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { sync } from 'vuex-router-sync';
@@ -54,9 +47,9 @@ export default class Lue {
      * @memberof Lue
      */
     use (plugin, opts) {
-        assert(isDef(plugin), `lue.use: plugin should be defined.`);
+        assert(!isDef(plugin), `lue.use: plugin should be defined.`);
         
-        if (isDef(opts)) {
+        if (!isDef(opts)) {
             Vue.use(plugin, opts);
         } else {
             Vue.use(plugin);
@@ -97,7 +90,7 @@ export default class Lue {
      */
     router (routerOptions) {
         assert(isObject(routerOptions), `lue.router: vue-router options should be a object.`);
-        assert(isDef(routerOptions['routes']), `lue.router: routes prop of vue-router options should be defined.`);
+        assert(!isDef(routerOptions['routes']), `lue.router: routes prop of vue-router options should be defined.`);
         assert(Array.isArray(routerOptions['routes']), `lue.router: routes prop of vue-router options should be a array.`);
 
         this.router = new VueRouter(routerOptions);
@@ -122,7 +115,7 @@ export default class Lue {
         assert(this.router, 'lue.start: router should be defined.');
         assert(this.store, 'lue.start: store should be defined.');
 
-        if (isDef(opts)) {
+        if (!isDef(opts)) {
             assert(isObject(opts), `lue.start: vue options shoule be object.`);
             instanceOptions = Object.assign({}, opts, {
                 el,
