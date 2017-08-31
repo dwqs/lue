@@ -8,6 +8,8 @@ import normalizeModule from './normalize';
 
 export let _root = null;
 
+export { mergeActions, mergeProps } from './helpers';
+
 export default class Lue {
     /**
      * Creates an instance of Lue.
