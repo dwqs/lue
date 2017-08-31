@@ -76,6 +76,10 @@ export default class Lue {
         console.log('this.modulesthis.modulesthis', this.modules);
 
         const strict = opts.strict || true;
+        
+        delete opts['actions'];
+        delete opts['getters'];
+
         opts = Object.assign({}, opts, {
             strict,
             modules: this.modules
