@@ -14,40 +14,40 @@
 </template>
 
 <script>
+    import { mergeActions, mergeProps } from 'lue';
+
     export default {
         data() {
             return {
                 title: 'Repos Example',
                 username: '',
-                disabled: false,
-                msg: 'message'
+                disabled: false
             }
         },
 
         computed: {
-            // ...mergeProps({
-            //     all: 'repos.all',
-            //     msg: 'repos.error'
-            // })
+            ...mergeProps({
+                all: 'repos.all',
+                msg: 'repos.error'
+            })
         },
 
         methods: {
-            // ...mergeActions(['repos.getYourRepos']),
+            ...mergeActions(['repos.getYourRepos']),
 
             getRepos() {
                 if (!this.username) {
                     return;
                 }
                 if (!this.disabled) {
-                    // this.disabled = true;
-                    // this.getYourRepos({
-                    //     username: this.username
-                    // }).then((res) => {
-                    //     console.log('getRepos', res);
-                    //     this.disabled = false;
-                    // }).catch((e) => {
-                    //     this.disabled = false;
-                    // })
+                    this.disabled = true;
+                    this.getYourRepos({
+                        username: this.username
+                    }).then((res) => {
+                        this.disabled = false;
+                    }).catch((e) => {
+                        this.disabled = false;
+                    })
                 }
             }
         }
