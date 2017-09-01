@@ -10,9 +10,9 @@ import {
     isObject,
     SEP
 } from './utils';
+import { _root } from './index';
 
 export default function normalizeModule (model, key) {
-    console.log('normalizeModulenormalizeModule', model, this);
     let module = {
         state: {},
         getters: {},
@@ -20,6 +20,13 @@ export default function normalizeModule (model, key) {
         mutations: {}
     };
     const namespace = model.namespace;
+
+    assert(namespace, `[lue]: the namespace of ${key} module must be defined`);
+    assert(typeof namespace === 'string', `[lue]: the namespace of ${key} module must be a string.`);
+    assert(/^[a-z]+$/.test(namespace), `[lue]: the namespace of ${key} module must be defined used lower-case.`);
+    assert(!this._modulesNamespaces.includes(namespace), `[lue]: the namespace value ${namespace} of module has been duplicate declaration.`);
+
+    this._modulesNamespaces.push(namespace);
     const getterPrefix = `get${toCamelCase(namespace)}`;
 
     module['state'] = model.state;
@@ -30,12 +37,15 @@ export default function normalizeModule (model, key) {
         module['getters'][getterKey] = function (state) {
             return state[key];
         };
+        this._namespaceGetters.push(`${namespace}${SEP}${key}`);
     });
 
     // normalize actions
     forEachValue(model.actions, (action, key) => {
         module['actions'][key] = function (localState, payload) {
-            const res = action.call(this, localState, payload);
+            assert(_root, `must call new Lue() before call ${key} action.`);
+
+            const res = action.call(_root, localState, payload);
             const type = `${namespace}${SEP}${key}`;
             const { commit } = localState;
 
@@ -50,13 +60,16 @@ export default function normalizeModule (model, key) {
                     // assert(false, `error in ${key} action: ${e.message}`);
                 });
             } else {
-                commit({
-                    type,
-                    data
-                });
+                if (!isDef(res)) {
+                    commit({
+                        type,
+                        data: res
+                    });
+                }
             }
             return res;
         };
+        this._namespaceActions.push(`${namespace}${SEP}${key}`);
     });
 
     // normalize mutations
@@ -65,7 +78,7 @@ export default function normalizeModule (model, key) {
         module['mutations'][type] = function (state, payload) {
             const { data } = payload;
             assert(
-                isDef(data) || isObject(data) || Object.is(data, null), 
+                !isDef(data) || isObject(data) || Object.is(data, null), 
                 `[lue]: ${type} action should return a object`
             );
 
