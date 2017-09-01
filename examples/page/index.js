@@ -1,40 +1,16 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
 import Lue from 'lue';
 
-Vue.use(VueRouter);
-
 import modules from '../modules/index';
+import routerOptions from '../options/router-options';
 
-const lue = new Lue();
-lue.createStore(modules);
+// 1. new a lue instance
+const app = new Lue();
 
-const App = () => import(/* webpackChunkName: "app" */ './app');
-const Counter = () => import(/* webpackChunkName: "counter" */ '../components/counter/index');
-const ToDo = () => import(/* webpackChunkName: "todo" */ '../components/todo/index');
-const Repos = () => import(/* webpackChunkName: "repos" */ '../components/repos/index');
+// 2. create store
+app.createStore(modules);
 
-const Outer = { template: '<router-view></router-view>' };
+// 3. init router
+app.initRouter(routerOptions);
 
-const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        {
-            path: '/',
-            component: Outer,
-            children: [
-                { path: '', component: App },
-                { path: 'counter', component: Counter },
-                { path: 'todo', component: ToDo },
-                { path: 'repos', component: Repos }
-            ]
-        }
-    ]
-});
-
-const app = new Vue({
-    router,
-    ...Outer
-});
-
-app.$mount('#app');
+// 4. start your application
+app.start('#app');
