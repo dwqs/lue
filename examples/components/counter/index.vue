@@ -10,27 +10,21 @@
 </template>
 
 <script>
+    import { mergeActions, mergeProps } from 'lue';
 
     export default {
-        data() {
-            return {
-                title: 'Counter Example',
-                count: 11
-            }
-        },
-
         computed: {
-            // ...mergeProps(['counter.count'])
+            ...mergeProps(['counter.count', 'counter.title'])
         },
 
         methods: {
-            // ...mergeActions(['counter.increase', 'counter.decrease']),
+            ...mergeActions(['counter.increase', 'counter.decrease']),
             add () {
-                // this.increase();
+                this.increase();
             },
 
             sub () {
-                // this.decrease();
+                this.decrease();
             }
         }
     }
