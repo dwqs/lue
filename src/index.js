@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { sync } from 'vuex-router-sync';
 import Vuex from 'vuex';
+import { sync } from 'vuex-router-sync';
 
-import { assert, isObject, isDef, forEachValue } from './utils';
+import { assert, isObject, isDef, forEachValue, isHTMLElement } from './utils';
 import normalizeModule from './normalize';
 
 export let _root = null;
@@ -21,6 +21,11 @@ export default class Lue {
         this.store = null;
         this.router = null;
         this.modules = Object.create(null);
+
+        this._namespaceActions = [];
+        this._namespaceGetters = [];
+        this._modulesNamespaces = [];
+
         _root = this;
 
         // install plugins
@@ -69,13 +74,9 @@ export default class Lue {
         assert(isObject(models), `lue.createStore: modules must be a plain object`);
         assert(isObject(opts), `lue.createStore: opts must be a plain object`);
 
-        console.log('111createStore', models);
-        
         forEachValue(models, (model, key) => {
             this.modules[key] = normalizeModule.call(this, model, key);
         });
-
-        console.log('this.modulesthis.modulesthis', this.modules);
 
         const strict = opts.strict || true;
 
@@ -88,8 +89,6 @@ export default class Lue {
         });
 
         this.store = new Vuex.Store(opts);
-        console.log('this.storethis.storethis.storethis.store', this.store);
-        console.log('this.state.statestate', this.store.state);
     }
 
     /**
@@ -98,7 +97,7 @@ export default class Lue {
      * @param {any} routerOptions 
      * @memberof Lue
      */
-    router (routerOptions) {
+    initRouter (routerOptions) {
         assert(isObject(routerOptions), `lue.router: vue-router options should be a object.`);
         assert(!isDef(routerOptions['routes']), `lue.router: routes prop of vue-router options should be defined.`);
         assert(Array.isArray(routerOptions['routes']), `lue.router: routes prop of vue-router options should be a array.`);
@@ -120,21 +119,22 @@ export default class Lue {
         const container = document.querySelector(el);
         let instanceOptions = {};
 
-        assert(container, `lue.start: could not query selector: ${container}`);
-        assert(isHTMLElement(container), `app:start: container should be HTMLElement.`);
+        assert(container, `lue.start: could not query ${el} selector: ${container}`);
+        assert(isHTMLElement(container), `app:start: ${el} selector for document.querySelector should be HTMLElement.`);
         assert(this.router, 'lue.start: router should be defined.');
         assert(this.store, 'lue.start: store should be defined.');
 
         if (!isDef(opts)) {
             assert(isObject(opts), `lue.start: vue options shoule be object.`);
+
             instanceOptions = Object.assign({}, opts, {
-                el,
+                el: el,
                 store: this.store,
                 router: this.router
             });
         } else {
             instanceOptions = Object.assign({}, {
-                el,
+                el: el,
                 store: this.store,
                 router: this.router,
                 template: '<router-view></router-view>'
