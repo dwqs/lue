@@ -6,18 +6,19 @@ export default {
         title: 'ToDo'
     },
     actions: {
-        addTodo (state, payload) {
-            state.list.push(payload.item);
+        addTodo ({dispatch, state}, payload) {
+            let list = [].concat(state.list, payload.item);
             return {
-                list: state.list,
-                total: state.list.length
+                list,
+                total: list.length
             };
         },
-        deleteTodo (state, payload) {
-            state.list.splice(payload.index, 1);
+        deleteTodo ({dispatch, state}, payload) {
+            let list = [].concat(state.list);
+            list.splice(payload.index, 1);
             return {
-                list: state.list,
-                total: state.list.length
+                list,
+                total: list.length
             };
         }
     }  

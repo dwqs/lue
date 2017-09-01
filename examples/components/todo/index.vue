@@ -17,39 +17,39 @@
 
 <script>
     import './index.less';
+    import { mergeActions, mergeProps } from 'lue';
 
     export default {
         data() {
             return {
                 title: 'ToDo Example',
-                todo: '',
-                all: false
+                todo: ''
             }
         },
 
         computed: {
-            // ...mergeProps({
-            //     all: 'todo.total',
-            //     todolist: 'todo.list'
-            // })
+            ...mergeProps({
+                all: 'todo.total',
+                todolist: 'todo.list'
+            })
         },
 
         methods: {
-            // ...mergeActions(['todo.addTodo', 'todo.deleteTodo']),
+            ...mergeActions(['todo.addTodo', 'todo.deleteTodo']),
 
             add() {
                 if(!this.todo){
                     return;
                 }
-                // this.addTodo({
-                //     item: this.todo
-                // });
+                this.addTodo({
+                    item: this.todo
+                });
             },
 
             del(index) {
-                // this.deleteTodo({
-                //     index
-                // });
+                this.deleteTodo({
+                    index
+                });
             }
         }
     }
