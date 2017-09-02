@@ -26,6 +26,8 @@ export default {
     actions: {
         increase ({dispatch, state}, payload) {
             const val = state.count + 1;
+            // should be return a object to update state
+            // if return undefined or not a object, state won't be updated 
             return {
                 count: val
             };
@@ -40,7 +42,7 @@ export default {
 };
 ```
 
-#### 2. create modules using the module you created
+#### 2. export all modules as a object
 ```js
 // modules/index.js
 import counter from './counter';
@@ -105,7 +107,7 @@ app.start('#app', {
 });
 ```
 
-#### 5. combine lue with Vue components
+#### 5. combine lue with vue components
 ```js
 <template>
     <div class="counter">
