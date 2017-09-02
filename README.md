@@ -146,6 +146,32 @@ app.start('#app', {
 </script>
 ```
 
+## Lue Instance Properties
+#### .store: Object
+Vuex store instance.
+
+#### .router: Object
+Vue router instance.
+
+#### .options: Object
+Lue constructor options.
+
+## Lue Instance Methods
+#### .use(plugin: Object | Function, opts?: Object)
+Install a Vue.js plugin.
+
+#### .initEventBus()
+Create a event bus. See [Non Parent-Child Communication](https://vuejs.org/v2/guide/components.html#Non-Parent-Child-Communication)
+
+#### .createStore(modules: Object, opts?: Object)
+Create vuex store. See [opts](https://vuex.vuejs.org/en/api.html).
+
+#### .initRouter(routerOptions: Object)
+Init vue-router instance. See [routerOptions](https://router.vuejs.org/en/api/options.html)
+
+#### .start(el: String, opts?: Object)
+Start the app. See [opts](https://vuejs.org/v2/guide/instance.html#Creating-a-Vue-Instance) of creating a vue instance. `el` is a css selector for [`document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+
 ## Examples
 Running the examples:
 
