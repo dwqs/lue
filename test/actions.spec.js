@@ -1,9 +1,12 @@
+import Vue from 'vue';
+
 import Lue from '../src/index';
 import modules from './modules';
 
 describe('actions', () => {
     beforeEach(() => {
         document.body.innerHTML = window.__html__['test/index.html'];
+        Vue.use(Lue);
     });
 
     it('counter\'s sync action', () => {
