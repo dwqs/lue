@@ -78,7 +78,7 @@ export default class Lue {
             this.modules[key] = normalizeModule.call(this, model, key);
         });
 
-        const strict = opts.strict || true;
+        const strict = opts.strict || false;
 
         delete opts['actions'];
         delete opts['getters'];
