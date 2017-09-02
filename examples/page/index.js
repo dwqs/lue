@@ -1,16 +1,20 @@
+import Vue from 'vue';
 import Lue from 'lue';
 
 import modules from '../modules/index';
 import routerOptions from '../options/router-options';
 
-// 1. new a lue instance
+// 1. install Lue plugin
+Vue.use(Lue);
+
+// 2. new a lue instance
 const app = new Lue();
 
-// 2. create store
+// 3. create store
 app.createStore(modules);
 
-// 3. init router
+// 4. init router
 app.initRouter(routerOptions);
 
-// 4. start your application
+// 5. start your application
 app.start('#app');
