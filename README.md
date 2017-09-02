@@ -80,6 +80,7 @@ export default {
 
 #### 4. create your app
 ```js
+import Vue from 'vue';
 // path/to/index.js
 import Lue from 'lue';
 
@@ -87,19 +88,19 @@ import modules from 'path/to/modules/index';
 import routerOptions from 'path/to/options/index';
 import filters from 'path/to/filter/index';
 
-// 1. new a lue instance
+// 1. install plugin
+Vue.use(Lue);
+
+// 2. new a lue instance
 const app = new Lue();
 
-// use plugin
-// app.use(vue-plugin, plugin-params)
-
-// 2. create store
+// 3. create store
 app.createStore(modules);
 
-// 3. init router
+// 4. init router
 app.initRouter(routerOptions);
 
-// 4. start your application
+// 5. start your application
 app.start('#app', {
     // optional options object
     filters,
@@ -157,12 +158,6 @@ Vue router instance.
 Lue constructor options.
 
 ## Lue Instance Methods
-#### .use(plugin: Object | Function, opts?: Object)
-Install a Vue.js plugin.
-
-#### .initEventBus()
-Create a event bus. See [Non Parent-Child Communication](https://vuejs.org/v2/guide/components.html#Non-Parent-Child-Communication)
-
 #### .createStore(modules: Object, opts?: Object)
 Create vuex store. See [opts](https://vuex.vuejs.org/en/api.html).
 
