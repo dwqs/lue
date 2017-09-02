@@ -47,32 +47,6 @@ export default class Lue {
     }
 
     /**
-     * add vue plugin
-     * 
-     * @param {any} plugin 
-     * @param {any} opts 
-     * @memberof Lue
-     */
-    use (plugin, opts) {
-        assert(!isDef(plugin), `lue.use: plugin should be defined.`);
-        
-        if (!isDef(opts)) {
-            Vue.use(plugin, opts);
-        } else {
-            Vue.use(plugin);
-        }
-    }
-
-    /**
-     * create a event bus
-     * 
-     * @memberof Lue
-     */
-    initEventBus () {
-        return new Vue();
-    }
-
-    /**
      * create vuex store
      * 
      * @param {any} modules 
