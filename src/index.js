@@ -124,6 +124,11 @@ export default class Lue {
         assert(this.router, 'lue.start: router should be defined.');
         assert(this.store, 'lue.start: store should be defined.');
 
+        if (opts.env !== 'development') {
+            Vue.config.devtools = false;
+            Vue.config.productionTip = false;
+        }
+
         if (!isDef(opts)) {
             assert(isObject(opts), `lue.start: vue options shoule be object.`);
 
