@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { Store } from 'vuex';
 import VueRouter from 'vue-router';
 
@@ -7,6 +8,7 @@ import modules from './modules';
 describe('index', () => {
     beforeEach(() => {
         document.body.innerHTML = window.__html__['test/index.html'];
+        Vue.use(Lue);
     });
 
     it('normal', () => {
