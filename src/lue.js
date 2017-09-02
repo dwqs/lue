@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { _Vue } from './install';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { sync } from 'vuex-router-sync';
@@ -15,6 +15,8 @@ export default class Lue {
      * @memberof Lue
      */
     constructor (options = {}) {
+        assert(_Vue, `must call Vue.use(Lue) before creating a Lue instance.`);
+
         this.options = options || {};
         this.store = null;
         this.router = null;
@@ -27,8 +29,8 @@ export default class Lue {
         _root = this;
 
         // install plugins
-        Vue.use(VueRouter);
-        Vue.use(Vuex);
+        _Vue.use(VueRouter);
+        _Vue.use(Vuex);
     }
 
     /**
@@ -133,8 +135,8 @@ export default class Lue {
             assert(isObject(opts), `lue.start: vue options shoule be object.`);
 
             if (opts.env !== 'development') {
-                Vue.config.devtools = false;
-                Vue.config.productionTip = false;
+                _Vue.config.devtools = false;
+                _Vue.config.productionTip = false;
             }
 
             instanceOptions = Object.assign({}, opts, {
@@ -143,9 +145,9 @@ export default class Lue {
             });
         } else {
             // default setting
-            Vue.config.devtools = false;
-            Vue.config.productionTip = false;
-
+            _Vue.config.devtools = false;
+            _Vue.config.productionTip = false;
+        
             instanceOptions = Object.assign({}, {
                 store: this.store,
                 router: this.router,
@@ -155,6 +157,6 @@ export default class Lue {
 
         this._syncRouter();
 
-        return new Vue(instanceOptions).$mount(el);
+        return new _Vue(instanceOptions).$mount(el);
     }
 }
