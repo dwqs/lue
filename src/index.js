@@ -124,22 +124,24 @@ export default class Lue {
         assert(this.router, 'lue.start: router should be defined.');
         assert(this.store, 'lue.start: store should be defined.');
 
-        if (opts.env !== 'development') {
-            Vue.config.devtools = false;
-            Vue.config.productionTip = false;
-        }
-
         if (!isDef(opts)) {
             assert(isObject(opts), `lue.start: vue options shoule be object.`);
 
+            if (opts.env !== 'development') {
+                Vue.config.devtools = false;
+                Vue.config.productionTip = false;
+            }
+
             instanceOptions = Object.assign({}, opts, {
-                el: el,
                 store: this.store,
                 router: this.router
             });
         } else {
+            // default setting
+            Vue.config.devtools = false;
+            Vue.config.productionTip = false;
+
             instanceOptions = Object.assign({}, {
-                el: el,
                 store: this.store,
                 router: this.router,
                 template: '<router-view></router-view>'
@@ -148,6 +150,6 @@ export default class Lue {
 
         this.syncRouter();
 
-        return new Vue(instanceOptions);
+        return new Vue(instanceOptions).$mount(el);
     }
 }
