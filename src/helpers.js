@@ -1,6 +1,6 @@
 import { mapActions, mapGetters } from 'vuex';
 import { SEP, assert, isObject, forEachValue, toCamelCase } from './utils';
-import { _root } from './index';
+import { _root } from './lue';
 
 export const mergeActions = (actions) => {
     assert(_root, `must call new Lue() before mergeActions.`);

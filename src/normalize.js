@@ -10,7 +10,7 @@ import {
     isObject,
     SEP
 } from './utils';
-import { _root } from './index';
+import { _root } from './lue';
 
 export default function normalizeModule (model, key) {
     let module = {
