@@ -79,4 +79,19 @@ describe('index', () => {
 
         expect(app.store.strict).to.equal(true);
     });
+
+    it('create event bus', done => {
+        const app = new Lue();
+        const event = app.initEventBus();
+        let val = 0;
+
+        expect(val).to.equal(0);
+
+        event.$on('add', () => {
+            val = 1;
+            expect(val).to.equal(1);
+            done();
+        });
+        event.$emit('add');
+    });
 });
