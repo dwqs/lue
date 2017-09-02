@@ -1,7 +1,7 @@
 {
   "name": "lue",
   "version": "0.0.1",
-  "description": "Vue and vuex based library, writing less verbose code.",
+  "description": "Vue and vuex based framework, writing less verbose code.",
   "author": "pomysky@gmail.com",
   "main": "dist/lue.min.js",
   "license": "MIT",
