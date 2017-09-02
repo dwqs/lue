@@ -18,8 +18,8 @@ export default class Lue {
         this.options = options || {};
         this.store = null;
         this.router = null;
-        this.modules = Object.create(null);
-
+        
+        this._modules = Object.create(null);
         this._namespaceActions = [];
         this._namespaceGetters = [];
         this._modulesNamespaces = [];
@@ -77,12 +77,12 @@ export default class Lue {
      * @param {any} opts 
      * @memberof Lue
      */
-    createStore (models, opts = {}) {
-        assert(isObject(models), `lue.createStore: modules must be a plain object`);
+    createStore (modules, opts = {}) {
+        assert(isObject(modules), `lue.createStore: modules must be a plain object`);
         assert(isObject(opts), `lue.createStore: opts must be a plain object`);
 
-        forEachValue(models, (model, key) => {
-            this.modules[key] = normalizeModule.call(this, model, key);
+        forEachValue(modules, (module, key) => {
+            this._modules[key] = normalizeModule.call(this, module, key);
         });
 
         const strict = opts.strict || false;
@@ -92,7 +92,7 @@ export default class Lue {
 
         opts = Object.assign({}, opts, {
             strict,
-            modules: this.modules
+            modules: this._modules
         });
 
         this.store = new Vuex.Store(opts);
