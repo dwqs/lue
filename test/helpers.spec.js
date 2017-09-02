@@ -8,6 +8,7 @@ let app = null;
 describe('helpers', () => {
     beforeEach(() => {
         document.body.innerHTML = window.__html__['test/index.html'];
+        Vue.use(Lue);
         app = new Lue();
         app.createStore(modules);
         app.initRouter({routes: []});
