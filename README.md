@@ -45,7 +45,7 @@ export default {
 #### 2. export all modules as a object
 ```js
 // modules/index.js
-import counter from './counter';
+import counter from 'path/to/counter';
 import other from 'path/to/other';
 
 export default {
@@ -57,8 +57,8 @@ export default {
 #### 3. create vue router options
 ```js
 // options/index.js
-const App = () => import(/* webpackChunkName: "app" */ '../components/app/index.vue');
-const Counter = () => import(/* webpackChunkName: "counter" */ '../components/counter/index');
+const App = () => import(/* webpackChunkName: "app" */ 'path/to/app/index.vue');
+const Counter = () => import(/* webpackChunkName: "counter" */ 'path/to/counter/index');
 
 const Outer = { template: '<router-view></router-view>' };
 
