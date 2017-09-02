@@ -1,6 +1,6 @@
 {
   "name": "lue",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "description": "Vue and vuex based framework, writing less verbose code.",
   "author": "pomysky@gmail.com",
   "main": "dist/lue.min.js",
@@ -23,17 +23,17 @@
     "dev": "node ./build/dev-server.js",
     "prepush": "npm run ilint -q",
     "prepublishOnly": "npm run build",
-    "build": "npx webpack --config ./build/webpack.build.config.js --progress --hide-modules",
+    "build": "npx rollup -c",
     "ilint": "npx eslint src/**/*.js",
     "fix": "npx eslint --fix src/**/*.js"
   },
   "dependencies": {
-    "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuex": "^2.3.1",
     "vuex-router-sync": "^4.2.0"
   },
   "devDependencies": {
+    "vue": "^2.4.2",
     "async-await-error-handling": "^0.5.2",
     "axios": "^0.16.2",
     "babel-core": "^6.25.0",
@@ -63,13 +63,18 @@
     "less-loader": "^4.0.4",
     "mocha": "^3.5.0",
     "open-browser-webpack-plugin": "^0.0.5",
+    "rollup": "^0.49.2",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-cleanup": "^1.0.1",
+    "rollup-plugin-commonjs": "^8.2.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "uglify-es": "^3.0.28",
     "vue-loader": "^13.0.0",
-    "vue-router": "^2.7.0",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1",
-    "webpack-parallel-uglify-plugin": "^0.4.2"
+    "webpack-dev-server": "^2.7.1"
   },
   "homepage": "https://github.com/dwqs/lue",
   "bugs": {
