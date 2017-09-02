@@ -16,7 +16,7 @@ export const mergeActions = (actions) => {
         });
     } else {
         forEachValue(actions, (val, key) => {
-            assert(_root._namespaceActions.includes(val), `[lue]unknown action: ${action}.`);
+            assert(_root._namespaceActions.includes(val), `[lue]unknown action: ${val}.`);
             _validActions[key] = val.split(SEP)[1];
         });
     }
