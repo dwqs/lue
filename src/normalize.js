@@ -51,16 +51,20 @@ export default function normalizeModule (model, key) {
 
             if (isPromise(res)) {
                 res.then((data) => {
-                    commit({
-                        type,
-                        data
-                    });
+                    if (data) {
+                        assert(isObject(data), `[lue]: should return a object to update module state`);
+                        commit({
+                            type,
+                            data
+                        });
+                    }
                 }).catch((e) => {
                     // do nothing
                     // assert(false, `error in ${key} action: ${e.message}`);
                 });
             } else {
                 if (!isDef(res)) {
+                    assert(isObject(res), `[lue]: should return a object to update module state`);
                     commit({
                         type,
                         data: res
