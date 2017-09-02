@@ -1,6 +1,6 @@
 {
   "name": "lue",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "description": "Vue and vuex based framework, writing less verbose code.",
   "author": "pomysky@gmail.com",
   "main": "dist/lue.min.js",
