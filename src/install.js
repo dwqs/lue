@@ -13,7 +13,3 @@ export default function install (Vue) {
 
     _Vue = Vue;
 }
-
-if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(Lue);
-}
