@@ -1,4 +1,4 @@
-const App = () => import(/* webpackChunkName: "app" */ '../components/app/index.vue');
+const App = () => import(/* webpackChunkName: "app1" */ '../components/app/index.vue');
 const Counter = () => import(/* webpackChunkName: "counter" */ '../components/counter/index');
 const ToDo = () => import(/* webpackChunkName: "todo" */ '../components/todo/index');
 const Repos = () => import(/* webpackChunkName: "repos" */ '../components/repos/index');
